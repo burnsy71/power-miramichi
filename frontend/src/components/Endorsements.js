@@ -8,12 +8,19 @@ const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 export default function Endorsements() {
   const { lang, t } = useLang();
   const [endorsements, setEndorsements] = useState([]);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    axios.get(`${API}/endorsements`).then((res) => setEndorsements(res.data)).catch(() => {});
+    Promise.all([
+      axios.get(`${API}/settings`),
+      axios.get(`${API}/endorsements`),
+    ]).then(([settingsRes, endorsementsRes]) => {
+      setVisible(settingsRes.data.show_endorsements === true);
+      setEndorsements(endorsementsRes.data);
+    }).catch(() => {});
   }, []);
 
-  if (endorsements.length === 0) return null;
+  if (!visible || endorsements.length === 0) return null;
 
   return (
     <section

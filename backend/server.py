@@ -84,6 +84,9 @@ class EndorsementResponse(BaseModel):
     quote_fr: Optional[str] = None
     created_at: str = ""
 
+class SettingsUpdate(BaseModel):
+    show_endorsements: Optional[bool] = None
+
 
 # Auth helpers
 def create_access_token(data: dict) -> str:
@@ -150,6 +153,13 @@ async def create_contact(input: ContactCreate):
 async def get_endorsements():
     endorsements = await db.endorsements.find({}, {"_id": 0}).sort("created_at", -1).to_list(100)
     return endorsements
+
+@api_router.get("/settings")
+async def get_settings():
+    settings = await db.settings.find_one({"id": "site_settings"}, {"_id": 0})
+    if not settings:
+        return {"show_endorsements": False}
+    return settings
 
 
 # Admin routes
@@ -220,6 +230,28 @@ async def admin_delete_endorsement(request: Request, endorsement_id: str):
     if result.deleted_count == 0:
         raise HTTPException(status_code=404, detail="Endorsement not found")
     return {"status": "deleted"}
+
+@api_router.get("/admin/settings")
+async def admin_get_settings(request: Request):
+    await get_admin(request)
+    settings = await db.settings.find_one({"id": "site_settings"}, {"_id": 0})
+    if not settings:
+        return {"show_endorsements": False}
+    return settings
+
+@api_router.put("/admin/settings")
+async def admin_update_settings(request: Request, input: SettingsUpdate):
+    await get_admin(request)
+    update = {}
+    if input.show_endorsements is not None:
+        update["show_endorsements"] = input.show_endorsements
+    await db.settings.update_one(
+        {"id": "site_settings"},
+        {"$set": {**update, "id": "site_settings"}},
+        upsert=True
+    )
+    settings = await db.settings.find_one({"id": "site_settings"}, {"_id": 0})
+    return settings
 
 
 # Seed placeholder endorsements on startup

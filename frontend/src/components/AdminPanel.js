@@ -82,6 +82,7 @@ export default function AdminPanel({ onBack }) {
   const [authChecked, setAuthChecked] = useState(false);
   const [editingEndorsement, setEditingEndorsement] = useState(null);
   const [showNewEndorsement, setShowNewEndorsement] = useState(false);
+  const [showEndorsements, setShowEndorsements] = useState(false);
 
   const headers = { Authorization: `Bearer ${token}` };
 
@@ -94,6 +95,15 @@ export default function AdminPanel({ onBack }) {
       setAuthChecked(true);
     }
   }, []);
+
+  // Fetch settings when authenticated
+  useEffect(() => {
+    if (token && authChecked) {
+      axios.get(`${API}/admin/settings`, { headers: { Authorization: `Bearer ${token}` } })
+        .then((res) => setShowEndorsements(res.data.show_endorsements === true))
+        .catch(() => {});
+    }
+  }, [token, authChecked]);
 
   useEffect(() => {
     if (token && authChecked) fetchData();
@@ -142,6 +152,16 @@ export default function AdminPanel({ onBack }) {
     try {
       await axios.delete(`${API}/admin/endorsements/${id}`, { headers });
       fetchData();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const toggleEndorsementsVisibility = async () => {
+    const newValue = !showEndorsements;
+    try {
+      await axios.put(`${API}/admin/settings`, { show_endorsements: newValue }, { headers });
+      setShowEndorsements(newValue);
     } catch (err) {
       console.error(err);
     }
@@ -278,6 +298,23 @@ export default function AdminPanel({ onBack }) {
           <div className="flex items-center justify-center py-16"><Loader2 size={24} className="animate-spin text-[#1E392A]/40" /></div>
         ) : tab === "endorsements" ? (
           <div className="space-y-4">
+            {/* Visibility Toggle */}
+            <div className="flex items-center justify-between p-5 rounded-2xl bg-[#F3EFE7] border border-[#E5DFD3]">
+              <div>
+                <p className="font-sans text-sm font-medium text-[#1E392A]">Show endorsements on website</p>
+                <p className="font-sans text-xs text-[#1E392A]/50 mt-0.5">
+                  {showEndorsements ? "Endorsements section is visible to visitors" : "Endorsements section is hidden from visitors"}
+                </p>
+              </div>
+              <button
+                onClick={toggleEndorsementsVisibility}
+                data-testid="admin-toggle-endorsements"
+                className={`relative w-12 h-7 rounded-full transition-colors ${showEndorsements ? "bg-[#1E392A]" : "bg-[#E5DFD3]"}`}
+              >
+                <span className={`absolute top-0.5 w-6 h-6 rounded-full bg-white shadow transition-transform ${showEndorsements ? "left-[22px]" : "left-0.5"}`} />
+              </button>
+            </div>
+
             {showNewEndorsement && (
               <EndorsementEditor headers={headers} onSaved={() => { setShowNewEndorsement(false); fetchData(); }} onCancel={() => setShowNewEndorsement(false)} />
             )}
