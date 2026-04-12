@@ -7,6 +7,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Platform from "@/components/Platform";
 import CommunityVideo from "@/components/CommunityVideo";
+import Endorsements from "@/components/Endorsements";
 import GetInvolved from "@/components/GetInvolved";
 import Footer from "@/components/Footer";
 import AdminPanel from "@/components/AdminPanel";
@@ -39,6 +40,7 @@ function CampaignSite() {
       <About />
       <Platform />
       <CommunityVideo />
+      <Endorsements />
       <GetInvolved />
       <Footer />
     </div>

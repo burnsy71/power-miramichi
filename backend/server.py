@@ -2,6 +2,7 @@ from fastapi import FastAPI, APIRouter, HTTPException, Request
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
+from pymongo import ReturnDocument
 import os
 import logging
 from pathlib import Path
@@ -63,6 +64,25 @@ class ContactResponse(BaseModel):
 
 class AdminLogin(BaseModel):
     password: str
+
+class EndorsementCreate(BaseModel):
+    name: str
+    title: Optional[str] = None
+    quote: str
+    name_fr: Optional[str] = None
+    title_fr: Optional[str] = None
+    quote_fr: Optional[str] = None
+
+class EndorsementResponse(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    title: Optional[str] = None
+    quote: str
+    name_fr: Optional[str] = None
+    title_fr: Optional[str] = None
+    quote_fr: Optional[str] = None
+    created_at: str = ""
 
 
 # Auth helpers
@@ -126,6 +146,11 @@ async def create_contact(input: ContactCreate):
     await db.contact_messages.insert_one(doc)
     return contact
 
+@api_router.get("/endorsements", response_model=List[EndorsementResponse])
+async def get_endorsements():
+    endorsements = await db.endorsements.find({}, {"_id": 0}).sort("created_at", -1).to_list(100)
+    return endorsements
+
 
 # Admin routes
 @api_router.post("/admin/login")
@@ -151,6 +176,90 @@ async def admin_get_contacts(request: Request):
     await get_admin(request)
     messages = await db.contact_messages.find({}, {"_id": 0}).sort("created_at", -1).to_list(1000)
     return messages
+
+@api_router.get("/admin/endorsements", response_model=List[EndorsementResponse])
+async def admin_get_endorsements(request: Request):
+    await get_admin(request)
+    endorsements = await db.endorsements.find({}, {"_id": 0}).sort("created_at", -1).to_list(100)
+    return endorsements
+
+@api_router.post("/admin/endorsements", response_model=EndorsementResponse)
+async def admin_create_endorsement(request: Request, input: EndorsementCreate):
+    await get_admin(request)
+    endorsement = EndorsementResponse(
+        name=input.name,
+        title=input.title,
+        quote=input.quote,
+        name_fr=input.name_fr,
+        title_fr=input.title_fr,
+        quote_fr=input.quote_fr,
+        created_at=datetime.now(timezone.utc).isoformat()
+    )
+    doc = endorsement.model_dump()
+    await db.endorsements.insert_one(doc)
+    return endorsement
+
+@api_router.put("/admin/endorsements/{endorsement_id}", response_model=EndorsementResponse)
+async def admin_update_endorsement(request: Request, endorsement_id: str, input: EndorsementCreate):
+    await get_admin(request)
+    update_data = input.model_dump()
+    result = await db.endorsements.find_one_and_update(
+        {"id": endorsement_id},
+        {"$set": update_data},
+        return_document=ReturnDocument.AFTER,
+        projection={"_id": 0}
+    )
+    if not result:
+        raise HTTPException(status_code=404, detail="Endorsement not found")
+    return result
+
+@api_router.delete("/admin/endorsements/{endorsement_id}")
+async def admin_delete_endorsement(request: Request, endorsement_id: str):
+    await get_admin(request)
+    result = await db.endorsements.delete_one({"id": endorsement_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Endorsement not found")
+    return {"status": "deleted"}
+
+
+# Seed placeholder endorsements on startup
+@app.on_event("startup")
+async def seed_endorsements():
+    count = await db.endorsements.count_documents({})
+    if count == 0:
+        placeholders = [
+            {
+                "id": str(uuid.uuid4()),
+                "name": "Community Member",
+                "title": "Miramichi Resident",
+                "quote": "Shawn is the kind of leader Miramichi needs — someone who actually lives the issues we all face every day. He's not in it for politics, he's in it for us.",
+                "name_fr": "Membre de la communaut\u00e9",
+                "title_fr": "R\u00e9sident de Miramichi",
+                "quote_fr": "Shawn est le genre de leader dont Miramichi a besoin \u2014 quelqu'un qui vit vraiment les probl\u00e8mes qu'on fait face \u00e0 tous les jours. Il est point l\u00e0-dedans pour la politique, il est l\u00e0 pour nous autres.",
+                "created_at": datetime.now(timezone.utc).isoformat()
+            },
+            {
+                "id": str(uuid.uuid4()),
+                "name": "Local Business Owner",
+                "title": "Small Business, Miramichi",
+                "quote": "Finally, someone who understands that growing the tax base — not raising taxes — is how you build a city. Shawn has my vote.",
+                "name_fr": "Propri\u00e9taire d'entreprise locale",
+                "title_fr": "Petite entreprise, Miramichi",
+                "quote_fr": "Finalement, quelqu'un qui comprend que faire cro\u00eetre la base fiscale \u2014 pas augmenter les taxes \u2014 c'est comme \u00e7a qu'on b\u00e2tit une ville. Shawn a mon vote.",
+                "created_at": datetime.now(timezone.utc).isoformat()
+            },
+            {
+                "id": str(uuid.uuid4()),
+                "name": "Veteran Supporter",
+                "title": "Proud Canadian Veteran",
+                "quote": "Shawn's commitment to protecting our veterans' memorials means the world to me and my family. It's about respect — and he gets it.",
+                "name_fr": "Supporteur v\u00e9t\u00e9ran",
+                "title_fr": "Fier v\u00e9t\u00e9ran canadien",
+                "quote_fr": "L'engagement de Shawn \u00e0 prot\u00e9ger les m\u00e9moriaux de nos v\u00e9t\u00e9rans, \u00e7a veut dire le monde pour moi et ma famille. C'est une question de respect \u2014 et il comprend \u00e7a.",
+                "created_at": datetime.now(timezone.utc).isoformat()
+            }
+        ]
+        await db.endorsements.insert_many(placeholders)
 
 
 # Include the router in the main app
