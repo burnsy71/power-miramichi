@@ -26,12 +26,12 @@ export default function About() {
           {/* Portrait */}
           <div className="lg:col-span-5">
             <div className="relative">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-[#F3EFE7] border border-[#E5DFD3]">
+              <div className="aspect-square rounded-2xl overflow-hidden bg-[#F3EFE7] border border-[#E5DFD3]">
                 <img
                   src={PORTRAIT}
                   alt="Shawn Power"
                   data-testid="about-portrait"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl bg-[#CC5A37]/10 -z-10" />
