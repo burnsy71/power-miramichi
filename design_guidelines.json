@@ -1,0 +1,116 @@
+{
+  "theme": "light",
+  "archetype": "1_organic_earthy",
+  "brand_identity": {
+    "name": "Shawn Power for Mayor",
+    "slogan": "The time for debate has passed. The time for action is now.",
+    "location": "Miramichi, New Brunswick",
+    "tone": "Warm, community-focused, trustworthy, action-oriented"
+  },
+  "colors": {
+    "background": "#FDFCF8",
+    "surface": "#F3EFE7",
+    "primary": "#1E392A",
+    "primary_foreground": "#FFFFFF",
+    "accent": "#CC5A37",
+    "accent_hover": "#B34A2D",
+    "accent_foreground": "#FFFFFF",
+    "highlight": "#E2AA54",
+    "muted": "#A6A097",
+    "border": "#E5DFD3",
+    "glass": "bg-white/70 backdrop-blur-xl border border-white/40"
+  },
+  "typography": {
+    "headings": {
+      "family": "Playfair Display",
+      "weights": ["400", "600", "700", "900"],
+      "classes": "font-serif tracking-tight text-[#1E392A]"
+    },
+    "body": {
+      "family": "Outfit",
+      "weights": ["300", "400", "500", "600"],
+      "classes": "font-sans text-[#1E392A]/80 leading-relaxed"
+    },
+    "scale": {
+      "h1": "text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter",
+      "h2": "text-3xl sm:text-4xl font-semibold tracking-tight",
+      "h3": "text-2xl font-medium",
+      "body": "text-lg",
+      "small": "text-sm tracking-wide uppercase"
+    }
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous spacing. Use p-8, p-12, py-24, py-32 to give elements breathing room.",
+    "grids": {
+      "platform_section": "Mode A 'Tetris' Grid. gap-8. Mix shapes: 1 large dominant feature (col-span-12 md:col-span-8), smaller cards (col-span-12 md:col-span-4). No equal boring squares. Grid children must be direct children."
+    },
+    "surfaces": {
+      "cards": "Flat solid surfaces with 1px border (#E5DFD3) and soft ambient shadow. Nested padding p-8.",
+      "header": "Crystal Glassmorphism (bg-[#FDFCF8]/80 backdrop-blur-xl border-b border-[#E5DFD3]) if sticky, or solid #FDFCF8.",
+      "footer": "Deep Forest Green (#1E392A) background with off-white text for high contrast. py-24."
+    }
+  },
+  "media": {
+    "hero_background": {
+      "url": "https://images.unsplash.com/photo-1571862729121-3c9e75b95c97?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwxfHxNaXJhbWljaGklMjByaXZlcnxlbnwwfHx8fDE3NzU5OTA3NDd8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Miramichi River"
+    },
+    "hero_texture": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/ef375f51-c54b-4221-98e1-2067759a0bcf/images/db091cfe2395f6b6788bbe1cf4b422674ae137a45fcc59934afa7af3eefdeb8a.png",
+      "description": "Warm terracotta and sage abstract texture"
+    },
+    "candidate_portrait": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/ef375f51-c54b-4221-98e1-2067759a0bcf/images/2108cde4f1ed290ad6a70b13401f825f55d18232dbd4f291fda55c20b0875266.png",
+      "description": "Professional silhouette placeholder for Shawn Power"
+    },
+    "community_gathering": {
+      "url": "https://images.unsplash.com/photo-1758599668209-783bd3691ec8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjB2b2x1bnRlZXJzJTIwZ2F0aGVyaW5nfGVufDB8fHx8MTc3NTk5MDc0N3ww&ixlib=rb-4.1.0&q=85",
+      "description": "Community volunteers"
+    },
+    "bridge": {
+      "url": "https://images.unsplash.com/photo-1683669446962-94846d059003?crop=entropy&cs=srgb&fm=jpg&ixid=M3w8NjA1NzR8MHwxfHNlYXJjaHwxfHxicmlkZ2UlMjBzdW5zZXR8ZW58MHx8fHwxNzc1OTkwNzQ3fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Centennial bridge representative placeholder"
+    }
+  },
+  "components": {
+    "buttons": "Shadcn based. Primary buttons use Terracotta (#CC5A37) with hover text-white. No generic blue rings. Generous px-8 py-6.",
+    "forms": "Inputs use organic borders (#E5DFD3) with #CC5A37 focus rings. Labels are left-aligned, Outfit font. Forms must sit on a distinct surface (like an off-white card) for contrast.",
+    "navigation": "Sticky nav with glass effect. Must include visible desktop links (Home, About, Platform, Get Involved, Contact) and an action-oriented 'Donate' CTA button."
+  },
+  "sections_to_build": [
+    {
+      "name": "Hero",
+      "description": "Large slogan, river background with gradient overlay (bg-gradient-to-r from-[#1E392A]/70 to-transparent), primary CTA 'Join the Movement'."
+    },
+    {
+      "name": "About",
+      "description": "Candidate portrait placeholder, bio text space, focus on warmth and community roots."
+    },
+    {
+      "name": "Platform",
+      "description": "Bento grid for 5 points (Planning Commission, Taxes, Veterans, Bypass Road, Centennial Bridge Sidewalk)."
+    },
+    {
+      "name": "Get Involved",
+      "description": "Volunteer sign up form (integrated with DB/state) and Donation/E-transfer info section prominently displayed."
+    },
+    {
+      "name": "Footer/Contact",
+      "description": "Phone (506-778-9410), Email (powerformayor@gmail.com), Facebook icon link, large typography."
+    }
+  ],
+  "accessibility_and_testing": {
+    "contrast": "Ensure text over images has sufficient text-shadow or gradient underlay.",
+    "testing": "All interactive elements MUST have data-testid attributes (e.g., data-testid='volunteer-submit-button', data-testid='nav-about-link')."
+  },
+  "instructions_to_main_agent": [
+    "This is a React .js (not .tsx) project. Write standard modern JavaScript.",
+    "Import and use Playfair Display (headings) and Outfit (body) via Google Fonts in index.css.",
+    "Do NOT use typical blue/red tech/political colors. Stick to the earthy palette provided (Terracotta, Sage/Forest Green, Warm Sand).",
+    "For the Get Involved form, use customized HTML/Tailwind form elements or Shadcn form primitives customized to match the warm color scheme.",
+    "Do not use generic Shadcn Cards everywhere. Use custom HTML divs for the Platform Bento grid to allow asymmetry.",
+    "Use the exact media URLs provided in this JSON. Do not use placeholder services.",
+    "Implement smooth scrolling (Lenis) if possible to add weight.",
+    "Use lucide-react for icons (Facebook icon for social media link)."
+  ]
+}
