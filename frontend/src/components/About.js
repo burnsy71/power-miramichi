@@ -47,7 +47,15 @@ export default function About() {
               </p>
 
               <p className="font-sans text-lg text-[#1E392A]/80 leading-relaxed">
-                <em className="text-[#1E392A]/50 font-light">{t.about.bioPlaceholder}</em>
+                {t.about.bio2}
+              </p>
+
+              <p className="font-sans text-lg text-[#1E392A]/80 leading-relaxed">
+                {t.about.bio3}
+              </p>
+
+              <p className="font-sans text-lg text-[#1E392A]/80 leading-relaxed">
+                {t.about.bio4}
               </p>
 
               <div className="mt-10 p-8 rounded-2xl bg-[#F3EFE7] border border-[#E5DFD3]">

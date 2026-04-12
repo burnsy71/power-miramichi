@@ -25,8 +25,11 @@ const translations = {
     about: {
       label: "About the Candidate",
       heading: "Meet Shawn Power",
-      bio: "Shawn Power isn't a career politician — he's your neighbour. A proud Miramichi resident who's sat through the same council meetings, driven the same congested roads, and watched the same tax bills climb year after year. He's running because he's tired of waiting for someone else to fix what's broken.",
-      bioPlaceholder: "[More details about Shawn's background, career, family, and community involvement will be added here by the family.]",
+      bio: "Shawn Power isn't a career politician — he's your neighbour. A proud father of two, stepfather to two more, and loving grandfather of three, Shawn shares his life with his wife Margie, whose partnership is a constant source of strength and joy.",
+      bio2: "An Electrical Engineering Technologist by trade, Shawn dedicated 21 years to Repap/UPM (1986–2007), building a strong foundation of technical expertise and professional commitment. In his younger years, he volunteered extensively with his church and local school — community service has always been in his nature.",
+      bio3: "After the closure of the mills and the life changes that followed, Shawn stepped back from volunteering, but his passion for giving back never faded. He firmly believes volunteering is essential to a healthy community and is ready to channel that energy into leading Miramichi forward.",
+      bio4: "Shawn currently resides in the former village of Nowlanville, near the southwest corner of the city, where he continues to value family, community, and the importance of contributing to the greater good.",
+      bioPlaceholder: "",
       coreBeliefs: "Core Beliefs",
       beliefs: [
         "We have too much oversight from government.",
@@ -170,8 +173,11 @@ const translations = {
     about: {
       label: "\u00C0 propos du candidat",
       heading: "Rencontrez Shawn Power",
-      bio: "Shawn Power est point un politicien de carri\u00E8re \u2014 c'est votre voisin. Un fier r\u00E9sident de Miramichi qui a assist\u00E9 aux m\u00EAmes r\u00E9unions du conseil, conduit sur les m\u00EAmes routes congestionn\u00E9es, et regard\u00E9 les m\u00EAmes factures de taxes monter ann\u00E9e apr\u00E8s ann\u00E9e. Il se pr\u00E9sente parce qu'il est tann\u00E9 d'attendre que quelqu'un d'autre r\u00E9pare ce qui est bris\u00E9.",
-      bioPlaceholder: "[Plus de d\u00E9tails sur le parcours, la carri\u00E8re, la famille et l'implication communautaire de Shawn seront ajout\u00E9s ici par la famille.]",
+      bio: "Shawn Power est point un politicien de carri\u00E8re \u2014 c'est votre voisin. Fier p\u00E8re de deux enfants, beau-p\u00E8re de deux autres et grand-p\u00E8re aimant de trois petits-enfants, Shawn partage sa vie avec sa femme Margie, dont le partenariat est une source constante de force et de joie.",
+      bio2: "Technologue en g\u00E9nie \u00E9lectrique de m\u00E9tier, Shawn a consacr\u00E9 21 ans \u00E0 Repap/UPM (1986\u20132007), b\u00E2tissant une solide fondation d'expertise technique et d'engagement professionnel. Dans ses jeunes ann\u00E9es, il a fait beaucoup de b\u00E9n\u00E9volat avec son \u00E9glise et l'\u00E9cole locale \u2014 le service communautaire a toujours \u00E9t\u00E9 dans sa nature.",
+      bio3: "Apr\u00E8s la fermeture des usines et les changements de vie qui ont suivi, Shawn s'est \u00E9loign\u00E9 du b\u00E9n\u00E9volat, mais sa passion pour redonner \u00E0 la communaut\u00E9 s'est jamais \u00E9teinte. Il croit fermement que le b\u00E9n\u00E9volat est essentiel \u00E0 une communaut\u00E9 en sant\u00E9 et il est pr\u00EAt \u00E0 canaliser cette \u00E9nergie pour mener Miramichi vers l'avant.",
+      bio4: "Shawn r\u00E9side pr\u00E9sentement dans l'ancien village de Nowlanville, pr\u00E8s du coin sud-ouest de la ville, o\u00F9 il continue de valoriser la famille, la communaut\u00E9 et l'importance de contribuer au bien commun.",
+      bioPlaceholder: "",
       coreBeliefs: "Convictions fondamentales",
       beliefs: [
         "On a trop de surveillance du gouvernement.",
