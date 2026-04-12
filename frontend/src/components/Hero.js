@@ -45,10 +45,18 @@ export default function Hero() {
 
           <p
             data-testid="hero-slogan"
-            className="animate-fade-in-up font-serif text-xl sm:text-2xl text-white/90 italic leading-relaxed mb-10 max-w-2xl"
+            className="animate-fade-in-up font-serif text-xl sm:text-2xl text-white/90 italic leading-relaxed mb-4 max-w-2xl"
             style={{ animationDelay: "0.3s" }}
           >
             {t.hero.slogan}
+          </p>
+
+          <p
+            data-testid="hero-tagline"
+            className="animate-fade-in-up font-sans text-sm tracking-[0.15em] uppercase text-[#E2AA54] font-medium mb-10"
+            style={{ animationDelay: "0.35s" }}
+          >
+            {t.hero.tagline}
           </p>
 
           <div

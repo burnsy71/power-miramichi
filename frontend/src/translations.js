@@ -16,6 +16,7 @@ const translations = {
       name: "Shawn Power",
       forMayor: "for Mayor",
       slogan: '"The time for debate has passed. The time for action is now."',
+      tagline: "Miramichi resident. Not a politician.",
       ctaPlatform: "See the Platform",
       ctaJoin: "Join the Movement",
       scroll: "Scroll",
@@ -24,7 +25,7 @@ const translations = {
     about: {
       label: "About the Candidate",
       heading: "Meet Shawn Power",
-      bio: "Shawn Power is a proud resident of Miramichi who believes in the strength and resilience of this community. With deep roots in the region, Shawn understands the challenges facing local families and businesses, and he's ready to bring practical, action-oriented leadership to City Hall.",
+      bio: "Shawn Power isn't a career politician — he's your neighbour. A proud Miramichi resident who's sat through the same council meetings, driven the same congested roads, and watched the same tax bills climb year after year. He's running because he's tired of waiting for someone else to fix what's broken.",
       bioPlaceholder: "[More details about Shawn's background, career, family, and community involvement will be added here by the family.]",
       coreBeliefs: "Core Beliefs",
       beliefs: [
@@ -38,7 +39,7 @@ const translations = {
     platform: {
       label: "The Platform",
       heading: "Real Plans for Miramichi",
-      subtitle: "Concrete actions — not empty promises. Here's what Shawn will fight for as your mayor.",
+      subtitle: "No political playbook. Just common sense. Here's what Shawn will fight for as your mayor.",
       items: [
         {
           title: "The Planning Commission",
@@ -77,7 +78,7 @@ const translations = {
     // Get Involved
     getInvolved: {
       label: "Get Involved",
-      heading: "Be Part of the Change",
+      heading: "This Campaign Belongs to You",
       volunteer: {
         title: "Volunteer",
         subtitle: "Help build a better Miramichi. Sign up to volunteer for the campaign — every hand makes a difference.",
@@ -139,6 +140,7 @@ const translations = {
       name: "Shawn Power",
       forMayor: "pour maire",
       slogan: "\u00AB Le temps des d\u00E9bats est pass\u00E9. Le temps d'agir, c'est asteure. \u00BB",
+      tagline: "R\u00E9sident de Miramichi. Pas un politicien.",
       ctaPlatform: "Voir la plateforme",
       ctaJoin: "Joignez le mouvement",
       scroll: "D\u00E9filez",
@@ -147,7 +149,7 @@ const translations = {
     about: {
       label: "\u00C0 propos du candidat",
       heading: "Rencontrez Shawn Power",
-      bio: "Shawn Power est un fier r\u00E9sident de Miramichi qui croit en la force et la r\u00E9silience de notre communaut\u00E9. Avec des racines profondes dans la r\u00E9gion, Shawn comprend les d\u00E9fis auxquels font face les familles et les entreprises locales, et il est pr\u00EAt \u00E0 apporter un leadership pratique et tourn\u00E9 vers l'action \u00E0 l'h\u00F4tel de ville.",
+      bio: "Shawn Power est point un politicien de carri\u00E8re \u2014 c'est votre voisin. Un fier r\u00E9sident de Miramichi qui a assist\u00E9 aux m\u00EAmes r\u00E9unions du conseil, conduit sur les m\u00EAmes routes congestionn\u00E9es, et regard\u00E9 les m\u00EAmes factures de taxes monter ann\u00E9e apr\u00E8s ann\u00E9e. Il se pr\u00E9sente parce qu'il est tann\u00E9 d'attendre que quelqu'un d'autre r\u00E9pare ce qui est bris\u00E9.",
       bioPlaceholder: "[Plus de d\u00E9tails sur le parcours, la carri\u00E8re, la famille et l'implication communautaire de Shawn seront ajout\u00E9s ici par la famille.]",
       coreBeliefs: "Convictions fondamentales",
       beliefs: [
@@ -161,7 +163,7 @@ const translations = {
     platform: {
       label: "La plateforme",
       heading: "Des vrais plans pour Miramichi",
-      subtitle: "Des actions concr\u00E8tes \u2014 pas des promesses en l'air. Voici ce que Shawn va d\u00E9fendre comme votre maire.",
+      subtitle: "Pas de livre de jeu politique. Juste du gros bon sens. Voici ce que Shawn va d\u00E9fendre comme votre maire.",
       items: [
         {
           title: "La Commission d'am\u00E9nagement",
@@ -200,7 +202,7 @@ const translations = {
     // Get Involved
     getInvolved: {
       label: "S'impliquer",
-      heading: "Faites partie du changement",
+      heading: "Cette campagne vous appartient",
       volunteer: {
         title: "B\u00E9n\u00E9volat",
         subtitle: "Aidez \u00E0 b\u00E2tir un meilleur Miramichi. Inscrivez-vous comme b\u00E9n\u00E9vole pour la campagne \u2014 chaque coup de main fait la diff\u00E9rence.",
