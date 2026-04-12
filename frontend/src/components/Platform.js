@@ -1,7 +1,7 @@
 import { Building2, Receipt, Medal, Route, BusFront } from "lucide-react";
 import { useLang } from "@/LanguageContext";
 
-const BRIDGE_IMG = "https://images.unsplash.com/photo-1683669446962-94846d059003?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzR8MHwxfHNlYXJjaHwxfHxicmlkZ2UlMjBzdW5zZXR8ZW58MHx8fHwxNzc1OTkwNzQ3fDA&ixlib=rb-4.1.0&q=85";
+const BRIDGE_IMG = "https://customer-assets.emergentagent.com/job_miramichi-power/artifacts/xo839giv_IMG_2333.webp";
 
 const icons = [Building2, Receipt, Medal, Route, BusFront];
 

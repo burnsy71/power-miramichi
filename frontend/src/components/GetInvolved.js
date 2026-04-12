@@ -4,7 +4,7 @@ import axios from "axios";
 import { useLang } from "@/LanguageContext";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
-const COMMUNITY_IMG = "https://images.unsplash.com/photo-1758599668209-783bd3691ec8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjB2b2x1bnRlZXJzJTIwZ2F0aGVyaW5nfGVufDB8fHx8MTc3NTk5MDc0N3ww&ixlib=rb-4.1.0&q=85";
+const COMMUNITY_IMG = "https://customer-assets.emergentagent.com/job_miramichi-power/artifacts/cane4mue_IMG_2334.webp";
 
 export default function GetInvolved() {
   const { t } = useLang();
