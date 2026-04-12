@@ -201,7 +201,7 @@ export default function GetInvolved() {
                   powerformayor@gmail.com
                 </p>
                 <p className="font-sans text-xs text-[#1E392A]/40 mt-2">
-                  <em>The specific e-transfer email will be confirmed shortly.</em>
+                  Please include your name in the e-Transfer message.
                 </p>
               </div>
             </div>
