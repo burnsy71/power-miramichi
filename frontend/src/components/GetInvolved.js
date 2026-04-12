@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Heart, Users, Send, CheckCircle, Loader2 } from "lucide-react";
 import axios from "axios";
 import { useLang } from "@/LanguageContext";
@@ -15,6 +15,13 @@ export default function GetInvolved() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [showVolunteer, setShowVolunteer] = useState(false);
+
+  useEffect(() => {
+    axios.get(`${API}/settings`).then((res) => {
+      setShowVolunteer(res.data.show_volunteer_form === true);
+    }).catch(() => {});
+  }, []);
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -56,9 +63,9 @@ export default function GetInvolved() {
           {t.getInvolved.heading}
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className={`grid grid-cols-1 ${showVolunteer ? "lg:grid-cols-2" : ""} gap-12 lg:gap-16 ${!showVolunteer ? "max-w-2xl mx-auto" : ""}`}>
           {/* Volunteer */}
-          <div>
+          {showVolunteer && <div>
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2.5 rounded-xl bg-[#1E392A] text-white">
                 <Users size={20} />
@@ -160,7 +167,7 @@ export default function GetInvolved() {
                 </button>
               </form>
             )}
-          </div>
+          </div>}
 
           {/* Donate */}
           <div>

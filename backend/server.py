@@ -86,6 +86,7 @@ class EndorsementResponse(BaseModel):
 
 class SettingsUpdate(BaseModel):
     show_endorsements: Optional[bool] = None
+    show_volunteer_form: Optional[bool] = None
 
 
 # Auth helpers
@@ -158,7 +159,7 @@ async def get_endorsements():
 async def get_settings():
     settings = await db.settings.find_one({"id": "site_settings"}, {"_id": 0})
     if not settings:
-        return {"show_endorsements": False}
+        return {"show_endorsements": False, "show_volunteer_form": False}
     return settings
 
 
@@ -236,7 +237,7 @@ async def admin_get_settings(request: Request):
     await get_admin(request)
     settings = await db.settings.find_one({"id": "site_settings"}, {"_id": 0})
     if not settings:
-        return {"show_endorsements": False}
+        return {"show_endorsements": False, "show_volunteer_form": False}
     return settings
 
 @api_router.put("/admin/settings")
@@ -245,6 +246,8 @@ async def admin_update_settings(request: Request, input: SettingsUpdate):
     update = {}
     if input.show_endorsements is not None:
         update["show_endorsements"] = input.show_endorsements
+    if input.show_volunteer_form is not None:
+        update["show_volunteer_form"] = input.show_volunteer_form
     await db.settings.update_one(
         {"id": "site_settings"},
         {"$set": {**update, "id": "site_settings"}},

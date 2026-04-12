@@ -83,6 +83,7 @@ export default function AdminPanel({ onBack }) {
   const [editingEndorsement, setEditingEndorsement] = useState(null);
   const [showNewEndorsement, setShowNewEndorsement] = useState(false);
   const [showEndorsements, setShowEndorsements] = useState(false);
+  const [showVolunteerForm, setShowVolunteerForm] = useState(false);
 
   const headers = { Authorization: `Bearer ${token}` };
 
@@ -100,7 +101,10 @@ export default function AdminPanel({ onBack }) {
   useEffect(() => {
     if (token && authChecked) {
       axios.get(`${API}/admin/settings`, { headers: { Authorization: `Bearer ${token}` } })
-        .then((res) => setShowEndorsements(res.data.show_endorsements === true))
+        .then((res) => {
+          setShowEndorsements(res.data.show_endorsements === true);
+          setShowVolunteerForm(res.data.show_volunteer_form === true);
+        })
         .catch(() => {});
     }
   }, [token, authChecked]);
@@ -162,6 +166,16 @@ export default function AdminPanel({ onBack }) {
     try {
       await axios.put(`${API}/admin/settings`, { show_endorsements: newValue }, { headers });
       setShowEndorsements(newValue);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const toggleVolunteerForm = async () => {
+    const newValue = !showVolunteerForm;
+    try {
+      await axios.put(`${API}/admin/settings`, { show_volunteer_form: newValue }, { headers });
+      setShowVolunteerForm(newValue);
     } catch (err) {
       console.error(err);
     }
@@ -353,11 +367,48 @@ export default function AdminPanel({ onBack }) {
             )}
           </div>
         ) : tableData.length === 0 ? (
-          <p className="text-center py-16 font-sans text-[#1E392A]/40">
-            {tab === "volunteers" ? "No volunteer sign-ups yet." : "No messages yet."}
-          </p>
+          <div className="space-y-4">
+            {tab === "volunteers" && (
+              <div className="flex items-center justify-between p-5 rounded-2xl bg-[#F3EFE7] border border-[#E5DFD3]">
+                <div>
+                  <p className="font-sans text-sm font-medium text-[#1E392A]">Show volunteer form on website</p>
+                  <p className="font-sans text-xs text-[#1E392A]/50 mt-0.5">
+                    {showVolunteerForm ? "Volunteer sign-up form is visible to visitors" : "Volunteer sign-up form is hidden from visitors"}
+                  </p>
+                </div>
+                <button
+                  onClick={toggleVolunteerForm}
+                  data-testid="admin-toggle-volunteer-empty"
+                  className={`relative w-12 h-7 rounded-full transition-colors ${showVolunteerForm ? "bg-[#1E392A]" : "bg-[#E5DFD3]"}`}
+                >
+                  <span className={`absolute top-0.5 w-6 h-6 rounded-full bg-white shadow transition-transform ${showVolunteerForm ? "left-[22px]" : "left-0.5"}`} />
+                </button>
+              </div>
+            )}
+            <p className="text-center py-16 font-sans text-[#1E392A]/40">
+              {tab === "volunteers" ? "No volunteer sign-ups yet." : "No messages yet."}
+            </p>
+          </div>
         ) : (
-          <div className="overflow-x-auto rounded-2xl border border-[#E5DFD3]">
+          <div className="space-y-4">
+            {tab === "volunteers" && (
+              <div className="flex items-center justify-between p-5 rounded-2xl bg-[#F3EFE7] border border-[#E5DFD3]">
+                <div>
+                  <p className="font-sans text-sm font-medium text-[#1E392A]">Show volunteer form on website</p>
+                  <p className="font-sans text-xs text-[#1E392A]/50 mt-0.5">
+                    {showVolunteerForm ? "Volunteer sign-up form is visible to visitors" : "Volunteer sign-up form is hidden from visitors"}
+                  </p>
+                </div>
+                <button
+                  onClick={toggleVolunteerForm}
+                  data-testid="admin-toggle-volunteer"
+                  className={`relative w-12 h-7 rounded-full transition-colors ${showVolunteerForm ? "bg-[#1E392A]" : "bg-[#E5DFD3]"}`}
+                >
+                  <span className={`absolute top-0.5 w-6 h-6 rounded-full bg-white shadow transition-transform ${showVolunteerForm ? "left-[22px]" : "left-0.5"}`} />
+                </button>
+              </div>
+            )}
+            <div className="overflow-x-auto rounded-2xl border border-[#E5DFD3]">
             <table className="w-full" data-testid="admin-data-table">
               <thead>
                 <tr className="bg-[#F3EFE7]">
@@ -386,6 +437,7 @@ export default function AdminPanel({ onBack }) {
                 ))}
               </tbody>
             </table>
+          </div>
           </div>
         )}
       </div>
