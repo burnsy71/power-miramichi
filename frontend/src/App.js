@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
 import "@/App.css";
+import { LanguageProvider } from "@/LanguageContext";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Platform from "@/components/Platform";
+import CommunityVideo from "@/components/CommunityVideo";
 import GetInvolved from "@/components/GetInvolved";
 import Footer from "@/components/Footer";
 
-function App() {
+function AppContent() {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "platform", "get-involved", "contact"];
+      const sections = ["home", "about", "platform", "video", "get-involved", "contact"];
       const scrollPos = window.scrollY + 120;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -34,9 +36,18 @@ function App() {
       <Hero />
       <About />
       <Platform />
+      <CommunityVideo />
       <GetInvolved />
       <Footer />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 }
 

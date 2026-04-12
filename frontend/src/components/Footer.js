@@ -1,6 +1,12 @@
 import { Phone, Mail, Facebook, MapPin, ArrowUp } from "lucide-react";
+import { useLang } from "@/LanguageContext";
+
+const FB_URL = "https://www.facebook.com/share/1L3ByXJ88o/?mibextid=wwXIfr";
 
 export default function Footer() {
+  const { t } = useLang();
+  const f = t.footer;
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -13,26 +19,23 @@ export default function Footer() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          {/* Left - Big Typography */}
           <div className="lg:col-span-7">
             <span className="inline-block text-xs tracking-[0.25em] uppercase font-sans font-medium text-[#E2AA54] mb-6">
-              Get In Touch
+              {f.label}
             </span>
             <h2
               data-testid="contact-heading"
               className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tighter text-white leading-[1.1] mb-8"
             >
-              Let's build a<br />
-              <span className="text-[#E2AA54]">better Miramichi</span><br />
-              together.
+              {f.heading1}<br />
+              <span className="text-[#E2AA54]">{f.heading2}</span><br />
+              {f.heading3}
             </h2>
             <p className="font-sans text-lg text-white/60 max-w-md leading-relaxed">
-              Have questions, ideas, or want to get involved? Reach out directly — 
-              Shawn wants to hear from you.
+              {f.subtitle}
             </p>
           </div>
 
-          {/* Right - Contact Details */}
           <div className="lg:col-span-5 flex flex-col justify-center">
             <div className="space-y-6">
               <a
@@ -45,7 +48,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="font-sans text-xs tracking-widest uppercase text-white/40 mb-0.5">
-                    Phone
+                    {f.phone}
                   </p>
                   <p className="font-sans text-lg font-medium text-white group-hover:text-[#E2AA54] transition-colors">
                     (506) 778-9410
@@ -63,7 +66,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="font-sans text-xs tracking-widest uppercase text-white/40 mb-0.5">
-                    Email
+                    {f.email}
                   </p>
                   <p className="font-sans text-lg font-medium text-white group-hover:text-[#E2AA54] transition-colors">
                     powerformayor@gmail.com
@@ -72,7 +75,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://facebook.com"
+                href={FB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="contact-facebook"
@@ -83,10 +86,10 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="font-sans text-xs tracking-widest uppercase text-white/40 mb-0.5">
-                    Facebook
+                    {f.facebook}
                   </p>
                   <p className="font-sans text-lg font-medium text-white group-hover:text-[#E2AA54] transition-colors">
-                    Follow the Campaign
+                    {f.facebookText}
                   </p>
                 </div>
               </a>
@@ -97,10 +100,10 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="font-sans text-xs tracking-widest uppercase text-white/40 mb-0.5">
-                    Location
+                    {f.location}
                   </p>
                   <p className="font-sans text-lg font-medium text-white">
-                    Miramichi, New Brunswick
+                    {f.locationText}
                   </p>
                 </div>
               </div>
@@ -109,11 +112,10 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar */}
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex items-center justify-between">
           <p className="font-sans text-sm text-white/40">
-            Shawn Power for Mayor — Miramichi
+            {f.copyright}
           </p>
           <button
             onClick={scrollToTop}

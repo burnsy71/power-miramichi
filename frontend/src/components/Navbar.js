@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Facebook } from "lucide-react";
-
-const navLinks = [
-  { id: "home", label: "Home" },
-  { id: "about", label: "About" },
-  { id: "platform", label: "Platform" },
-  { id: "get-involved", label: "Get Involved" },
-  { id: "contact", label: "Contact" },
-];
+import { Menu, X } from "lucide-react";
+import { useLang } from "@/LanguageContext";
 
 export default function Navbar({ activeSection }) {
+  const { lang, t, toggleLang } = useLang();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const navLinks = [
+    { id: "home", label: t.nav.home },
+    { id: "about", label: t.nav.about },
+    { id: "platform", label: t.nav.platform },
+    { id: "get-involved", label: t.nav.getInvolved },
+    { id: "contact", label: t.nav.contact },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -56,7 +58,7 @@ export default function Navbar({ activeSection }) {
                 scrolled ? "text-[#CC5A37]" : "text-[#E2AA54]"
               }`}
             >
-              for Mayor
+              {t.nav.forMayor}
             </span>
           </button>
 
@@ -80,25 +82,52 @@ export default function Navbar({ activeSection }) {
                 {link.label}
               </button>
             ))}
+
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLang}
+              data-testid="lang-toggle"
+              className={`ml-2 px-3 py-1.5 rounded-full text-xs font-sans font-bold tracking-wider border transition-all duration-200 ${
+                scrolled
+                  ? "border-[#1E392A]/20 text-[#1E392A] hover:bg-[#1E392A] hover:text-white"
+                  : "border-white/30 text-white hover:bg-white/20"
+              }`}
+            >
+              {lang === "en" ? "FR" : "EN"}
+            </button>
+
             <button
               onClick={() => scrollTo("get-involved")}
               data-testid="nav-donate-cta"
-              className="ml-3 px-6 py-2.5 rounded-full bg-[#CC5A37] text-white text-sm font-sans font-semibold hover:bg-[#B34A2D] transition-colors"
+              className="ml-2 px-6 py-2.5 rounded-full bg-[#CC5A37] text-white text-sm font-sans font-semibold hover:bg-[#B34A2D] transition-colors"
             >
-              Donate
+              {t.nav.donate}
             </button>
           </div>
 
-          {/* Mobile Toggle */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            data-testid="mobile-menu-toggle"
-            className={`lg:hidden p-2 rounded-lg transition-colors ${
-              scrolled ? "text-[#1E392A]" : "text-white"
-            }`}
-          >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile: Lang Toggle + Menu */}
+          <div className="flex lg:hidden items-center gap-2">
+            <button
+              onClick={toggleLang}
+              data-testid="mobile-lang-toggle"
+              className={`px-2.5 py-1 rounded-full text-xs font-sans font-bold tracking-wider border transition-colors ${
+                scrolled
+                  ? "border-[#1E392A]/20 text-[#1E392A]"
+                  : "border-white/30 text-white"
+              }`}
+            >
+              {lang === "en" ? "FR" : "EN"}
+            </button>
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              data-testid="mobile-menu-toggle"
+              className={`p-2 rounded-lg transition-colors ${
+                scrolled ? "text-[#1E392A]" : "text-white"
+              }`}
+            >
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -128,7 +157,7 @@ export default function Navbar({ activeSection }) {
               data-testid="mobile-donate-cta"
               className="w-full mt-2 px-6 py-3 rounded-full bg-[#CC5A37] text-white text-sm font-sans font-semibold"
             >
-              Donate
+              {t.nav.donate}
             </button>
           </div>
         </div>
