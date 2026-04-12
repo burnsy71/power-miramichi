@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "@/App.css";
 import { LanguageProvider } from "@/LanguageContext";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -8,8 +9,9 @@ import Platform from "@/components/Platform";
 import CommunityVideo from "@/components/CommunityVideo";
 import GetInvolved from "@/components/GetInvolved";
 import Footer from "@/components/Footer";
+import AdminPanel from "@/components/AdminPanel";
 
-function AppContent() {
+function CampaignSite() {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
@@ -43,10 +45,20 @@ function AppContent() {
   );
 }
 
+function AdminPage() {
+  const navigate = useNavigate();
+  return <AdminPanel onBack={() => navigate("/")} />;
+}
+
 function App() {
   return (
     <LanguageProvider>
-      <AppContent />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<CampaignSite />} />
+          <Route path="/admin" element={<AdminPage />} />
+        </Routes>
+      </BrowserRouter>
     </LanguageProvider>
   );
 }
