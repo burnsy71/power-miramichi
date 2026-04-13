@@ -2,7 +2,7 @@ import { ArrowDown } from "lucide-react";
 import { useLang } from "@/LanguageContext";
 
 const LANDSCAPE = "/images/hero-landscape.jpeg";
-const PORTRAIT = "/images/shawn-torso.jpg";
+const PORTRAIT = "/images/shawn-hero-nobg.png";
 
 export default function Hero() {
   const { t } = useLang();
@@ -18,56 +18,39 @@ export default function Hero() {
       data-testid="hero-section"
       className="relative min-h-screen flex items-end lg:items-center overflow-hidden bg-[#1E392A]"
     >
-      {/* Mobile: portrait as full-bleed background with bottom-up dark gradient for text legibility */}
-      <div className="absolute inset-0 lg:hidden">
-        <img
-          src={PORTRAIT}
-          alt="Shawn Power"
-          className="w-full h-full object-cover object-top"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(30,57,42,0.15) 0%, rgba(30,57,42,0.55) 45%, rgba(30,57,42,0.95) 85%, rgba(30,57,42,1) 100%)",
-          }}
-        />
-      </div>
-
-      {/* Desktop: landscape backdrop — desaturated and darkened on the left */}
-      <div className="hidden lg:block absolute inset-0">
+      {/* Backdrop: Miramichi landscape, dimmed — shows through on both mobile and desktop */}
+      <div className="absolute inset-0">
         <img
           src={LANDSCAPE}
           alt=""
           aria-hidden="true"
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover opacity-30"
         />
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 hidden lg:block"
           style={{
             background:
-              "linear-gradient(90deg, rgba(30,57,42,0.95) 0%, rgba(30,57,42,0.85) 45%, rgba(30,57,42,0.55) 65%, rgba(30,57,42,0.2) 100%)",
+              "linear-gradient(90deg, rgba(30,57,42,0.95) 0%, rgba(30,57,42,0.85) 40%, rgba(30,57,42,0.5) 60%, rgba(30,57,42,0.15) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 lg:hidden"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(30,57,42,0.25) 0%, rgba(30,57,42,0.6) 55%, rgba(30,57,42,0.98) 90%)",
           }}
         />
       </div>
 
-      {/* Desktop: portrait on right side */}
-      <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[48%] xl:w-[45%]">
-        <img
-          src={PORTRAIT}
-          alt="Shawn Power"
-          className="w-full h-full object-cover object-top"
-        />
-        <div
-          className="absolute inset-y-0 left-0 w-40"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(30,57,42,0.85) 0%, rgba(30,57,42,0) 100%)",
-          }}
-        />
-      </div>
+      {/* Transparent portrait — anchored bottom-right on desktop, bottom-center on mobile */}
+      <img
+        src={PORTRAIT}
+        alt="Shawn Power"
+        className="pointer-events-none select-none absolute z-[5] bottom-0 right-1/2 translate-x-1/2 max-w-none h-[55%] w-auto
+                   lg:right-6 lg:translate-x-0 lg:h-[85%] xl:h-[90%] object-contain object-bottom drop-shadow-2xl"
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pb-16 pt-32 lg:py-0 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pb-[55vh] pt-24 lg:py-0 w-full">
         <div className="max-w-2xl">
           <div className="animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
             <span className="inline-block px-4 py-1.5 rounded-full border border-[#E2AA54]/40 text-[#E2AA54] text-xs tracking-[0.2em] uppercase font-sans font-medium mb-8">
