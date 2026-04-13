@@ -1,7 +1,8 @@
 import { ArrowDown } from "lucide-react";
 import { useLang } from "@/LanguageContext";
 
-const HERO_BG = "/images/hero-landscape.jpeg";
+const LANDSCAPE = "/images/hero-landscape.jpeg";
+const PORTRAIT = "/images/shawn-torso.jpg";
 
 export default function Hero() {
   const { t } = useLang();
@@ -15,19 +16,43 @@ export default function Hero() {
     <section
       id="home"
       data-testid="hero-section"
-      className="relative min-h-screen flex items-center"
+      className="relative min-h-screen flex items-center overflow-hidden bg-[#1E392A]"
     >
+      {/* Landscape backdrop — desaturated and darkened */}
       <div className="absolute inset-0">
         <img
-          src={HERO_BG}
-          alt="Miramichi River"
-          className="w-full h-full object-cover"
+          src={LANDSCAPE}
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover opacity-40"
         />
-        <div className="hero-overlay absolute inset-0" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(30,57,42,0.95) 0%, rgba(30,57,42,0.85) 45%, rgba(30,57,42,0.55) 65%, rgba(30,57,42,0.2) 100%)",
+          }}
+        />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-0">
-        <div className="max-w-3xl">
+      {/* Portrait — right side on desktop, hidden on mobile (mobile gets text-only over darker bg) */}
+      <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[48%] xl:w-[45%]">
+        <img
+          src={PORTRAIT}
+          alt="Shawn Power"
+          className="w-full h-full object-cover object-top"
+        />
+        <div
+          className="absolute inset-y-0 left-0 w-40"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(30,57,42,0.85) 0%, rgba(30,57,42,0) 100%)",
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-0 w-full">
+        <div className="max-w-2xl">
           <div className="animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
             <span className="inline-block px-4 py-1.5 rounded-full border border-[#E2AA54]/40 text-[#E2AA54] text-xs tracking-[0.2em] uppercase font-sans font-medium mb-8">
               {t.hero.location}

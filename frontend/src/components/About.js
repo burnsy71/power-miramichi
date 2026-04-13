@@ -1,6 +1,6 @@
 import { useLang } from "@/LanguageContext";
 
-const PORTRAIT = "/images/current-portrait.jpeg";
+const PORTRAIT = "/images/shawn-headshot.jpg";
 
 export default function About() {
   const { t } = useLang();
