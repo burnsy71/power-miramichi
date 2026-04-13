@@ -3,6 +3,9 @@ from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo import ReturnDocument
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 import os
 import logging
 from pathlib import Path
@@ -11,6 +14,7 @@ from typing import List, Optional
 import uuid
 from datetime import datetime, timezone, timedelta
 import bcrypt
+import httpx
 import jwt
 
 
@@ -25,9 +29,49 @@ db = client[os.environ['DB_NAME']]
 JWT_SECRET = os.environ['JWT_SECRET']
 JWT_ALGORITHM = "HS256"
 ADMIN_PASSWORD = os.environ['ADMIN_PASSWORD']
+TURNSTILE_SECRET = os.environ.get('TURNSTILE_SECRET', '')
 
-# Create the main app without a prefix
-app = FastAPI()
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+
+def client_ip(request: Request) -> str:
+    # Trust X-Forwarded-For from nginx (set via proxy_set_header)
+    xff = request.headers.get("x-forwarded-for", "")
+    if xff:
+        return xff.split(",")[0].strip()
+    return get_remote_address(request)
+
+
+limiter = Limiter(key_func=client_ip)
+
+# Disable auto-generated docs in production (reconnaissance aid for bots)
+app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+
+async def verify_turnstile(token: str, request: Request) -> bool:
+    if not TURNSTILE_SECRET:
+        return True  # disabled until secret is configured
+    if not token:
+        return False
+    try:
+        async with httpx.AsyncClient(timeout=5.0) as http:
+            r = await http.post(
+                "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+                data={
+                    "secret": TURNSTILE_SECRET,
+                    "response": token,
+                    "remoteip": client_ip(request),
+                },
+            )
+            return bool(r.json().get("success"))
+    except Exception:
+        return False
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
@@ -35,10 +79,11 @@ api_router = APIRouter(prefix="/api")
 
 # Models
 class VolunteerCreate(BaseModel):
-    name: str
-    email: str
-    phone: Optional[str] = None
-    message: Optional[str] = None
+    name: str = Field(..., min_length=1, max_length=120)
+    email: str = Field(..., min_length=3, max_length=200)
+    phone: Optional[str] = Field(None, max_length=40)
+    message: Optional[str] = Field(None, max_length=2000)
+    turnstile_token: Optional[str] = Field(None, max_length=2048)
 
 class VolunteerResponse(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -50,9 +95,10 @@ class VolunteerResponse(BaseModel):
     created_at: str = ""
 
 class ContactCreate(BaseModel):
-    name: str
-    email: str
-    message: str
+    name: str = Field(..., min_length=1, max_length=120)
+    email: str = Field(..., min_length=3, max_length=200)
+    message: str = Field(..., min_length=1, max_length=2000)
+    turnstile_token: Optional[str] = Field(None, max_length=2048)
 
 class ContactResponse(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -126,7 +172,10 @@ async def root():
     return {"message": "Shawn Power for Mayor - API"}
 
 @api_router.post("/volunteers", response_model=VolunteerResponse)
-async def create_volunteer(input: VolunteerCreate):
+@limiter.limit("5/minute;30/hour")
+async def create_volunteer(request: Request, input: VolunteerCreate):
+    if not await verify_turnstile(input.turnstile_token or "", request):
+        raise HTTPException(status_code=400, detail="CAPTCHA verification failed")
     volunteer = VolunteerResponse(
         name=input.name,
         email=input.email,
@@ -139,7 +188,10 @@ async def create_volunteer(input: VolunteerCreate):
     return volunteer
 
 @api_router.post("/contact", response_model=ContactResponse)
-async def create_contact(input: ContactCreate):
+@limiter.limit("5/minute;30/hour")
+async def create_contact(request: Request, input: ContactCreate):
+    if not await verify_turnstile(input.turnstile_token or "", request):
+        raise HTTPException(status_code=400, detail="CAPTCHA verification failed")
     contact = ContactResponse(
         name=input.name,
         email=input.email,
@@ -165,8 +217,10 @@ async def get_settings():
 
 # Admin routes
 @api_router.post("/admin/login")
-async def admin_login(input: AdminLogin):
+@limiter.limit("5/minute;20/hour")
+async def admin_login(request: Request, input: AdminLogin):
     if input.password != ADMIN_PASSWORD:
+        logger.warning("admin_login_failed ip=%s", client_ip(request))
         raise HTTPException(status_code=401, detail="Invalid password")
     token = create_access_token({"role": "admin", "sub": "admin"})
     return {"token": token, "role": "admin"}
@@ -307,13 +361,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():

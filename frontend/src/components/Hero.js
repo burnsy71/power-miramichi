@@ -1,7 +1,7 @@
 import { ArrowDown } from "lucide-react";
 import { useLang } from "@/LanguageContext";
 
-const HERO_BG = "https://customer-assets.emergentagent.com/job_miramichi-power/artifacts/labxce0h_IMG_2332.jpeg";
+const HERO_BG = "/images/hero-landscape.jpeg";
 
 export default function Hero() {
   const { t } = useLang();

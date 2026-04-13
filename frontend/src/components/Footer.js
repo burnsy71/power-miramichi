@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Phone, Mail, Facebook, MapPin, ArrowUp, Send, CheckCircle, Loader2 } from "lucide-react";
 import { useLang } from "@/LanguageContext";
 import axios from "axios";
+import Turnstile from "./Turnstile";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const FB_URL = "https://www.facebook.com/share/1L3ByXJ88o/?mibextid=wwXIfr";
+const TURNSTILE_SITE_KEY = process.env.REACT_APP_TURNSTILE_SITE_KEY || "";
 
 export default function Footer() {
   const { t } = useLang();
@@ -15,6 +17,8 @@ export default function Footer() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef(null);
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -26,14 +30,22 @@ export default function Footer() {
       setError(cf.errorRequired);
       return;
     }
+    if (TURNSTILE_SITE_KEY && !turnstileToken) {
+      setError(cf.errorGeneric);
+      return;
+    }
     setError("");
     setSubmitting(true);
     try {
-      await axios.post(`${API}/contact`, form);
+      await axios.post(`${API}/contact`, { ...form, turnstile_token: turnstileToken });
       setSubmitted(true);
       setForm({ name: "", email: "", message: "" });
+      setTurnstileToken("");
+      if (turnstileRef.current && turnstileRef.current.reset) turnstileRef.current.reset();
     } catch (err) {
       setError(cf.errorGeneric);
+      setTurnstileToken("");
+      if (turnstileRef.current && turnstileRef.current.reset) turnstileRef.current.reset();
     } finally {
       setSubmitting(false);
     }
@@ -205,6 +217,14 @@ export default function Footer() {
                     />
                   </div>
 
+                  {TURNSTILE_SITE_KEY && (
+                    <Turnstile
+                      ref={turnstileRef}
+                      siteKey={TURNSTILE_SITE_KEY}
+                      onVerify={setTurnstileToken}
+                    />
+                  )}
+
                   {error && (
                     <p data-testid="contact-form-error" className="text-sm text-red-400 font-sans">
                       {error}
@@ -213,7 +233,7 @@ export default function Footer() {
 
                   <button
                     type="submit"
-                    disabled={submitting}
+                    disabled={submitting || (TURNSTILE_SITE_KEY && !turnstileToken)}
                     data-testid="contact-submit-button"
                     className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#CC5A37] text-white font-sans font-semibold text-sm hover:bg-[#B34A2D] transition-colors disabled:opacity-50"
                   >

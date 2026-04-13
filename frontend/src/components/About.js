@@ -1,6 +1,6 @@
 import { useLang } from "@/LanguageContext";
 
-const PORTRAIT = "https://customer-assets.emergentagent.com/job_miramichi-power/artifacts/96744i3b_IMG_5948.jpeg";
+const PORTRAIT = "/images/current-portrait.jpeg";
 
 export default function About() {
   const { t } = useLang();

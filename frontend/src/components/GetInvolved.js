@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Heart, Users, Send, CheckCircle, Loader2 } from "lucide-react";
 import axios from "axios";
 import { useLang } from "@/LanguageContext";
+import Turnstile from "./Turnstile";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
-const COMMUNITY_IMG = "https://customer-assets.emergentagent.com/job_miramichi-power/artifacts/cane4mue_IMG_2334.webp";
+const COMMUNITY_IMG = "/images/community.webp";
+const TURNSTILE_SITE_KEY = process.env.REACT_APP_TURNSTILE_SITE_KEY || "";
 
 export default function GetInvolved() {
   const { t } = useLang();
@@ -16,6 +18,8 @@ export default function GetInvolved() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [showVolunteer, setShowVolunteer] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef(null);
 
   useEffect(() => {
     axios.get(`${API}/settings`).then((res) => {
@@ -33,14 +37,22 @@ export default function GetInvolved() {
       setError(v.errorRequired);
       return;
     }
+    if (TURNSTILE_SITE_KEY && !turnstileToken) {
+      setError(v.errorGeneric);
+      return;
+    }
     setError("");
     setSubmitting(true);
     try {
-      await axios.post(`${API}/volunteers`, form);
+      await axios.post(`${API}/volunteers`, { ...form, turnstile_token: turnstileToken });
       setSubmitted(true);
       setForm({ name: "", email: "", phone: "", message: "" });
+      setTurnstileToken("");
+      if (turnstileRef.current && turnstileRef.current.reset) turnstileRef.current.reset();
     } catch (err) {
       setError(v.errorGeneric);
+      setTurnstileToken("");
+      if (turnstileRef.current && turnstileRef.current.reset) turnstileRef.current.reset();
     } finally {
       setSubmitting(false);
     }
@@ -150,6 +162,14 @@ export default function GetInvolved() {
                   />
                 </div>
 
+                {TURNSTILE_SITE_KEY && (
+                  <Turnstile
+                    ref={turnstileRef}
+                    siteKey={TURNSTILE_SITE_KEY}
+                    onVerify={setTurnstileToken}
+                  />
+                )}
+
                 {error && (
                   <p data-testid="volunteer-error" className="text-sm text-red-600 font-sans">
                     {error}
@@ -158,7 +178,7 @@ export default function GetInvolved() {
 
                 <button
                   type="submit"
-                  disabled={submitting}
+                  disabled={submitting || (TURNSTILE_SITE_KEY && !turnstileToken)}
                   data-testid="volunteer-submit-button"
                   className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#1E392A] text-white font-sans font-semibold text-sm hover:bg-[#1E392A]/90 transition-colors disabled:opacity-50"
                 >
