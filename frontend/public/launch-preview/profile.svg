@@ -9,24 +9,29 @@
   <!-- Square background (Facebook auto-crops to a circle) -->
   <rect width="1080" height="1080" fill="url(#bg)"/>
 
-  <!-- Subtle outer ring inside the circle crop -->
-  <circle cx="540" cy="540" r="475" fill="none" stroke="#E2AA54" stroke-width="3" opacity="0.6"/>
-  <circle cx="540" cy="540" r="455" fill="none" stroke="#E2AA54" stroke-width="1" opacity="0.3"/>
+  <!-- Outer decorative ring within the circle crop -->
+  <circle cx="540" cy="540" r="488" fill="none" stroke="#E2AA54" stroke-width="3" opacity="0.5"/>
 
-  <!-- Energy bars centered slightly above middle -->
-  <g transform="translate(390, 290)">
-    <rect x="0"   y="120" width="60" height="180" rx="8" fill="#1E392A" stroke="#E2AA54" stroke-width="3"/>
-    <rect x="90"  y="60"  width="60" height="240" rx="8" fill="#CC5A37"/>
-    <rect x="180" y="0"   width="60" height="300" rx="8" fill="#E2AA54"/>
+  <!-- Shield centered -->
+  <g transform="translate(320, 130)">
+    <!-- Shield outer -->
+    <path d="M 220 0 L 440 0 L 440 280 Q 440 520 220 580 Q 0 520 0 280 L 0 0 Z" fill="#1E392A" stroke="#E2AA54" stroke-width="6"/>
+    <!-- Shield inner outline -->
+    <path d="M 220 28 L 412 28 L 412 280 Q 412 498 220 552 Q 28 498 28 280 L 28 28 Z" fill="none" stroke="#E2AA54" stroke-width="2" opacity="0.6"/>
+    <!-- Center "P" -->
+    <text x="220" y="290" text-anchor="middle" font-family="'Playfair Display','Georgia',serif" font-size="260" font-weight="700" fill="#E2AA54">P</text>
+    <!-- Divider inside shield -->
+    <line x1="70" y1="335" x2="370" y2="335" stroke="#CC5A37" stroke-width="4"/>
+    <!-- POWER -->
+    <text x="220" y="395" text-anchor="middle" font-family="'Outfit','Inter',sans-serif" font-size="36" font-weight="700" letter-spacing="10" fill="#E2AA54">POWER</text>
+    <!-- FOR MAYOR -->
+    <text x="220" y="440" text-anchor="middle" font-family="'Outfit','Inter',sans-serif" font-size="24" font-weight="500" letter-spacing="8" fill="#E2AA54">FOR MAYOR</text>
+    <!-- MIRAMICHI -->
+    <text x="220" y="500" text-anchor="middle" font-family="'Outfit','Inter',sans-serif" font-size="22" font-weight="600" letter-spacing="8" fill="#CC5A37">MIRAMICHI</text>
   </g>
 
-  <!-- Wordmark below mark -->
-  <text x="540" y="710" text-anchor="middle" font-family="'Outfit','Inter',sans-serif" font-size="56" font-weight="500" letter-spacing="20" fill="#FDFCF8">SHAWN</text>
-  <text x="540" y="820" text-anchor="middle" font-family="'Outfit','Inter',sans-serif" font-size="120" font-weight="800" letter-spacing="-4" fill="#CC5A37">POWER</text>
-
-  <!-- Divider -->
-  <line x1="440" y1="855" x2="640" y2="855" stroke="#E2AA54" stroke-width="3"/>
-
-  <!-- Tagline below -->
-  <text x="540" y="905" text-anchor="middle" font-family="'Outfit','Inter',sans-serif" font-size="32" font-weight="600" letter-spacing="14" fill="#FDFCF8">FOR MAYOR</text>
+  <!-- Bottom wordmark: SHAWN name (so feed thumbnails still read it) -->
+  <text x="540" y="830" text-anchor="middle" font-family="'Outfit','Inter',sans-serif" font-size="44" font-weight="500" letter-spacing="16" fill="#FDFCF8">SHAWN POWER</text>
+  <line x1="440" y1="870" x2="640" y2="870" stroke="#E2AA54" stroke-width="2"/>
+  <text x="540" y="920" text-anchor="middle" font-family="'Outfit','Inter',sans-serif" font-size="22" font-weight="600" letter-spacing="10" fill="#E2AA54">FOR MAYOR · MIRAMICHI</text>
 </svg>

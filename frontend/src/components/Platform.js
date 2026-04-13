@@ -64,7 +64,7 @@ export default function Platform() {
             <div className="p-3 rounded-xl bg-white/10 w-fit mb-5">
               <Receipt size={22} />
             </div>
-            <h3 className="font-serif text-2xl font-semibold mb-2">
+            <h3 className="font-serif text-2xl font-semibold mb-2 text-white">
               {items[1].title}
             </h3>
             <p className="font-sans text-sm text-[#E2AA54] font-medium mb-4">
@@ -128,7 +128,7 @@ export default function Platform() {
               <div className="p-3 rounded-xl bg-white/15 w-fit mb-4">
                 <BusFront size={22} />
               </div>
-              <h3 className="font-serif text-xl font-semibold mb-2">
+              <h3 className="font-serif text-xl font-semibold mb-2 text-white">
                 {items[4].title}
               </h3>
               <p className="font-sans text-sm text-[#E2AA54] font-medium mb-3">
