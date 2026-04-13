@@ -50,9 +50,9 @@ const translations = {
           detail: "The city needs its own in-house planning commission with a liaison who works directly with people requiring their services. Anyone wanting to spend money growing this city should only have positive experiences. We cannot afford to have new businesses turn away because of bad experiences or a bad reputation.",
         },
         {
-          title: "Tax Reform",
-          summary: "Growing the tax base, not the tax rate.",
-          detail: "The province is currently exploring tax reform and has implemented a freeze on property assessments, effectively limiting increases in property taxes. It is my hope that this process will result in a reformed Real Property Tax Act that provides city council full authority over how residents are taxed on their property.\n\nI believe that any additional tax revenue should come from growth in the tax base, rather than from increasing tax rates.",
+          title: "Your Tax Dollars",
+          summary: "All spending under the microscope — tax increases held to a minimum.",
+          detail: "It may not always be possible, but I believe that any additional tax revenue should come from growth in the tax base, rather than from increasing tax rates.\n\nThe best thing I can do for the citizens of Miramichi is put all spending under the microscope, so that tax increases are held to an absolute minimum.",
         },
         {
           title: "Veterans",
@@ -198,9 +198,9 @@ const translations = {
           detail: "La ville a besoin de sa propre commission d'am\u00E9nagement avec un agent de liaison qui travaille directement avec les gens qui ont besoin de ses services. Quiconque veut d\u00E9penser de l'argent pour faire cro\u00EEtre cette ville devrait avoir seulement des exp\u00E9riences positives. On peut pas se permettre que des nouvelles entreprises s'en vont \u00E0 cause de mauvaises exp\u00E9riences ou d'une mauvaise r\u00E9putation.",
         },
         {
-          title: "R\u00E9forme fiscale",
-          summary: "Faire cro\u00EEtre la base fiscale, pas le taux de taxe.",
-          detail: "La province est pr\u00E9sentement en train d'explorer une r\u00E9forme fiscale et a mis en place un gel sur l'\u00E9valuation des propri\u00E9t\u00E9s, ce qui limite les augmentations de taxes fonci\u00E8res. J'esp\u00E8re que ce processus va mener \u00E0 une Loi sur l'imp\u00F4t foncier r\u00E9form\u00E9e qui donne au conseil municipal le plein pouvoir sur comment les r\u00E9sidents sont tax\u00E9s sur leur propri\u00E9t\u00E9.\n\nJe crois que tout revenu de taxe suppl\u00E9mentaire devrait venir de la croissance de la base fiscale, pas d'une augmentation des taux de taxe.",
+          title: "Vos imp\u00F4ts",
+          summary: "Toutes les d\u00E9penses \u00E0 la loupe \u2014 hausses de taxes r\u00E9duites au minimum.",
+          detail: "Ce n'est pas toujours possible, mais je crois que tout revenu de taxe suppl\u00E9mentaire devrait venir de la croissance de la base fiscale, pas d'une augmentation des taux de taxe.\n\nLa meilleure chose que je peux faire pour les citoyens de Miramichi, c'est de mettre toutes les d\u00E9penses \u00E0 la loupe, pour que les hausses de taxes soient r\u00E9duites au minimum absolu.",
         },
         {
           title: "Les v\u00E9t\u00E9rans",
