@@ -50,9 +50,9 @@ const translations = {
           detail: "The city needs its own in-house planning commission with a liaison who works directly with people requiring their services. Anyone wanting to spend money growing this city should only have positive experiences. We cannot afford to have new businesses turn away because of bad experiences or a bad reputation.",
         },
         {
-          title: "Taxes",
-          summary: "Long-term tax freeze to foster residential growth.",
-          detail: "Once the new planning commission is installed, we will implement a long-term tax freeze on tax bill increases and look at every opportunity to lower tax bills. The tax freeze should remain on your property even for improvements such as additions or garages for as long as you live in and own your home. New growth in home builds will attract new businesses.",
+          title: "Tax Reform",
+          summary: "Growing the tax base, not the tax rate.",
+          detail: "The province is currently exploring tax reform and has implemented a freeze on property assessments, effectively limiting increases in property taxes. It is my hope that this process will result in a reformed Real Property Tax Act that provides city council full authority over how residents are taxed on their property.\n\nI believe that any additional tax revenue should come from growth in the tax base, rather than from increasing tax rates.",
         },
         {
           title: "Veterans",
@@ -62,7 +62,7 @@ const translations = {
         {
           title: "Northern Bypass",
           summary: "A new northern street now — not years from now.",
-          detail: "We can connect the asphalt between Beaverbrook Road and McKinnon Road for immediate temporary relief. There is 2.5 km between these roads. The cost is approximately $2.5 to $3 million and can be done in one season. This will be a new street for local traffic so that favorite shopping destinations can be accessed while we continue to lobby the province.",
+          detail: "We can connect the asphalt between Beaverbrook Road and McKinnon Road for immediate temporary relief. There is 2.5 km between these roads. This can be accomplished in one construction season. This will be a new street for local traffic only, so that favorite shopping destinations can be accessed while we continue to lobby the province for a bypass.",
         },
         {
           title: "Centennial Bridge Sidewalk",
@@ -198,9 +198,9 @@ const translations = {
           detail: "La ville a besoin de sa propre commission d'am\u00E9nagement avec un agent de liaison qui travaille directement avec les gens qui ont besoin de ses services. Quiconque veut d\u00E9penser de l'argent pour faire cro\u00EEtre cette ville devrait avoir seulement des exp\u00E9riences positives. On peut pas se permettre que des nouvelles entreprises s'en vont \u00E0 cause de mauvaises exp\u00E9riences ou d'une mauvaise r\u00E9putation.",
         },
         {
-          title: "Les taxes",
-          summary: "Un gel des taxes \u00E0 long terme pour favoriser la croissance r\u00E9sidentielle.",
-          detail: "Une fois la nouvelle commission install\u00E9e, on va mettre en place un gel des taxes \u00E0 long terme sur les augmentations de factures de taxes et chercher chaque occasion de les baisser. Le gel de taxes devrait rester sur votre propri\u00E9t\u00E9 m\u00EAme pour les am\u00E9liorations comme les ajouts ou les garages tant que vous vivez dans et \u00EAtes propri\u00E9taire de votre maison. La nouvelle croissance en construction de maisons va attirer de nouvelles entreprises.",
+          title: "R\u00E9forme fiscale",
+          summary: "Faire cro\u00EEtre la base fiscale, pas le taux de taxe.",
+          detail: "La province est pr\u00E9sentement en train d'explorer une r\u00E9forme fiscale et a mis en place un gel sur l'\u00E9valuation des propri\u00E9t\u00E9s, ce qui limite les augmentations de taxes fonci\u00E8res. J'esp\u00E8re que ce processus va mener \u00E0 une Loi sur l'imp\u00F4t foncier r\u00E9form\u00E9e qui donne au conseil municipal le plein pouvoir sur comment les r\u00E9sidents sont tax\u00E9s sur leur propri\u00E9t\u00E9.\n\nJe crois que tout revenu de taxe suppl\u00E9mentaire devrait venir de la croissance de la base fiscale, pas d'une augmentation des taux de taxe.",
         },
         {
           title: "Les v\u00E9t\u00E9rans",
@@ -210,7 +210,7 @@ const translations = {
         {
           title: "Le contournement nord",
           summary: "Une nouvelle rue au nord maintenant \u2014 pas dans des ann\u00E9es.",
-          detail: "On peut connecter l'asphalte entre le chemin Beaverbrook et le chemin McKinnon pour un soulagement imm\u00E9diat. Il y a 2,5 km entre ces routes. Le co\u00FBt est d'environ 2,5 \u00E0 3 millions de dollars et \u00E7a peut \u00EAtre fait en une saison. \u00C7a va \u00EAtre une nouvelle rue pour le trafic local pour que nos destinations de magasinage pr\u00E9f\u00E9r\u00E9es soient accessibles pendant qu'on continue de faire pression sur la province.",
+          detail: "On peut connecter l'asphalte entre le chemin Beaverbrook et le chemin McKinnon pour un soulagement temporaire imm\u00E9diat. Il y a 2,5 km entre ces routes. \u00C7a peut \u00EAtre accompli en une saison de construction. \u00C7a va \u00EAtre une nouvelle rue pour le trafic local seulement, pour que nos destinations de magasinage pr\u00E9f\u00E9r\u00E9es soient accessibles pendant qu'on continue de faire pression sur la province pour un contournement.",
         },
         {
           title: "Le trottoir du pont Centennial",

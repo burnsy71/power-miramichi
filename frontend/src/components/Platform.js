@@ -51,7 +51,7 @@ export default function Platform() {
                 </p>
               </div>
             </div>
-            <p className="font-sans text-base text-[#1E392A]/70 leading-relaxed">
+            <p className="font-sans text-base text-[#1E392A]/70 leading-relaxed whitespace-pre-line">
               {items[0].detail}
             </p>
           </div>
@@ -70,7 +70,7 @@ export default function Platform() {
             <p className="font-sans text-sm text-[#E2AA54] font-medium mb-4">
               {items[1].summary}
             </p>
-            <p className="font-sans text-sm text-white/70 leading-relaxed">
+            <p className="font-sans text-sm text-white/70 leading-relaxed whitespace-pre-line">
               {items[1].detail}
             </p>
           </div>
@@ -89,7 +89,7 @@ export default function Platform() {
             <p className="font-sans text-sm text-[#CC5A37] font-medium mb-4">
               {items[2].summary}
             </p>
-            <p className="font-sans text-sm text-[#1E392A]/70 leading-relaxed">
+            <p className="font-sans text-sm text-[#1E392A]/70 leading-relaxed whitespace-pre-line">
               {items[2].detail}
             </p>
           </div>
@@ -108,7 +108,7 @@ export default function Platform() {
             <p className="font-sans text-sm text-[#CC5A37] font-medium mb-4">
               {items[3].summary}
             </p>
-            <p className="font-sans text-sm text-[#1E392A]/70 leading-relaxed">
+            <p className="font-sans text-sm text-[#1E392A]/70 leading-relaxed whitespace-pre-line">
               {items[3].detail}
             </p>
           </div>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1E392A"/>
+      <stop offset="100%" stop-color="#0F2618"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Square background (Facebook auto-crops to a circle) -->
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+
+  <!-- Subtle outer ring inside the circle crop -->
+  <circle cx="540" cy="540" r="475" fill="none" stroke="#E2AA54" stroke-width="3" opacity="0.6"/>
+  <circle cx="540" cy="540" r="455" fill="none" stroke="#E2AA54" stroke-width="1" opacity="0.3"/>
+
+  <!-- Energy bars centered slightly above middle -->
+  <g transform="translate(390, 290)">
+    <rect x="0"   y="120" width="60" height="180" rx="8" fill="#1E392A" stroke="#E2AA54" stroke-width="3"/>
+    <rect x="90"  y="60"  width="60" height="240" rx="8" fill="#CC5A37"/>
+    <rect x="180" y="0"   width="60" height="300" rx="8" fill="#E2AA54"/>
+  </g>
+
+  <!-- Wordmark below mark -->
+  <text x="540" y="710" text-anchor="middle" font-family="'Outfit','Inter',sans-serif" font-size="56" font-weight="500" letter-spacing="20" fill="#FDFCF8">SHAWN</text>
+  <text x="540" y="820" text-anchor="middle" font-family="'Outfit','Inter',sans-serif" font-size="120" font-weight="800" letter-spacing="-4" fill="#CC5A37">POWER</text>
+
+  <!-- Divider -->
+  <line x1="440" y1="855" x2="640" y2="855" stroke="#E2AA54" stroke-width="3"/>
+
+  <!-- Tagline below -->
+  <text x="540" y="905" text-anchor="middle" font-family="'Outfit','Inter',sans-serif" font-size="32" font-weight="600" letter-spacing="14" fill="#FDFCF8">FOR MAYOR</text>
+</svg>
