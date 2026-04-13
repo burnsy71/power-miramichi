@@ -16,10 +16,26 @@ export default function Hero() {
     <section
       id="home"
       data-testid="hero-section"
-      className="relative min-h-screen flex items-center overflow-hidden bg-[#1E392A]"
+      className="relative min-h-screen flex items-end lg:items-center overflow-hidden bg-[#1E392A]"
     >
-      {/* Landscape backdrop — desaturated and darkened */}
-      <div className="absolute inset-0">
+      {/* Mobile: portrait as full-bleed background with bottom-up dark gradient for text legibility */}
+      <div className="absolute inset-0 lg:hidden">
+        <img
+          src={PORTRAIT}
+          alt="Shawn Power"
+          className="w-full h-full object-cover object-top"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(30,57,42,0.15) 0%, rgba(30,57,42,0.55) 45%, rgba(30,57,42,0.95) 85%, rgba(30,57,42,1) 100%)",
+          }}
+        />
+      </div>
+
+      {/* Desktop: landscape backdrop — desaturated and darkened on the left */}
+      <div className="hidden lg:block absolute inset-0">
         <img
           src={LANDSCAPE}
           alt=""
@@ -35,7 +51,7 @@ export default function Hero() {
         />
       </div>
 
-      {/* Portrait — right side on desktop, hidden on mobile (mobile gets text-only over darker bg) */}
+      {/* Desktop: portrait on right side */}
       <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[48%] xl:w-[45%]">
         <img
           src={PORTRAIT}
@@ -51,7 +67,7 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-0 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pb-16 pt-32 lg:py-0 w-full">
         <div className="max-w-2xl">
           <div className="animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
             <span className="inline-block px-4 py-1.5 rounded-full border border-[#E2AA54]/40 text-[#E2AA54] text-xs tracking-[0.2em] uppercase font-sans font-medium mb-8">
@@ -109,7 +125,7 @@ export default function Hero() {
       <button
         onClick={() => scrollTo("about")}
         data-testid="hero-scroll-indicator"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors animate-bounce"
+        className="hidden lg:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-2 text-white/60 hover:text-white transition-colors animate-bounce"
       >
         <span className="text-xs font-sans tracking-widest uppercase">{t.hero.scroll}</span>
         <ArrowDown size={18} />
