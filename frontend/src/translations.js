@@ -82,7 +82,7 @@ const translations = {
     showYourSupport: {
       kicker: "Show Your Support",
       heading: "Wear the badge. Spread the word.",
-      body: "Add the Power for Mayor frame to your Facebook or Instagram profile picture. Every profile is a small billboard — when your friends see it, they'll remember Shawn's name on election day.",
+      body: "Add the Power for Mayor frame to your Facebook or Instagram profile picture — as your temporary profile picture until election day. Every profile is a small billboard, and when your friends see it, they'll remember Shawn's name on their ballot.",
       bullet1: "Takes less than 30 seconds — right in your browser, no apps required.",
       bullet2: "Works on your phone or your computer.",
       bullet3: "Your photo never leaves your device — the whole thing happens privately.",
@@ -241,7 +241,7 @@ const translations = {
     showYourSupport: {
       kicker: "Montrez votre soutien",
       heading: "Portez le badge. Passez le mot.",
-      body: "Ajoutez le cadre Power for Mayor \u00E0 votre photo de profil Facebook ou Instagram. Chaque profil, c'est un petit panneau publicitaire \u2014 quand vos amis le voient, ils vont se rappeler du nom de Shawn le jour de l'\u00E9lection.",
+      body: "Ajoutez le cadre Power for Mayor \u00E0 votre photo de profil Facebook ou Instagram \u2014 comme photo de profil temporaire jusqu'au jour de l'\u00E9lection. Chaque profil, c'est un petit panneau publicitaire, et quand vos amis le voient, ils vont se rappeler du nom de Shawn sur leur bulletin.",
       bullet1: "\u00C7a prend moins de 30 secondes \u2014 directement dans votre navigateur, aucune app \u00E0 installer.",
       bullet2: "Marche sur votre t\u00E9l\u00E9phone ou sur votre ordinateur.",
       bullet3: "Votre photo ne quitte jamais votre appareil \u2014 tout se fait en priv\u00E9.",

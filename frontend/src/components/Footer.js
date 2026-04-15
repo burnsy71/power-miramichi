@@ -5,7 +5,7 @@ import axios from "axios";
 import Turnstile from "./Turnstile";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
-const FB_URL = "https://www.facebook.com/share/1L3ByXJ88o/?mibextid=wwXIfr";
+const FB_URL = "https://www.facebook.com/powerformayor";
 const TURNSTILE_SITE_KEY = process.env.REACT_APP_TURNSTILE_SITE_KEY || "";
 
 export default function Footer() {
