@@ -118,29 +118,29 @@
   </div>
 
   <div class="instructions tab-panel active" id="fb">
-    <h3>On Facebook (phone app)</h3>
+    <h3>On Facebook (iPhone or Android app)</h3>
     <ol>
       <li>Open the Facebook app and tap your profile picture</li>
       <li>Tap <strong>Edit Profile</strong> → tap your profile picture again</li>
-      <li>Tap <strong>Upload Photo</strong> and pick the file you just downloaded</li>
-      <li>Tap <strong>Save</strong></li>
+      <li>Tap <strong>Select Profile Picture</strong> — it'll open your Photos/Camera Roll</li>
+      <li>Your new framed photo will be at the top (it's the most recent). Tap it → <strong>Save</strong></li>
     </ol>
     <h3 style="margin-top:16px">On Facebook (computer)</h3>
     <ol>
       <li>Go to your Facebook profile</li>
       <li>Click your profile picture</li>
       <li>Click <strong>Update profile picture</strong> → <strong>Upload photo</strong></li>
-      <li>Pick the downloaded file → click <strong>Save</strong></li>
+      <li>Pick the downloaded file (check your <strong>Downloads</strong> folder) → click <strong>Save</strong></li>
     </ol>
   </div>
 
   <div class="instructions tab-panel" id="ig">
-    <h3>On Instagram</h3>
+    <h3>On Instagram (iPhone or Android)</h3>
     <ol>
       <li>Open Instagram and go to your profile</li>
       <li>Tap <strong>Edit Profile</strong></li>
       <li>Tap your profile picture → <strong>New profile picture</strong></li>
-      <li>Select the downloaded file → tap <strong>Done</strong></li>
+      <li>Pick the framed photo from your Camera Roll (it's the most recent one) → tap <strong>Done</strong></li>
     </ol>
   </div>
 
@@ -304,21 +304,64 @@
     }
   }, { passive: false });
 
-  downloadBtn.addEventListener('click', () => {
+  // Detect if the Web Share API supports sharing files
+  // (modern iOS Safari & Android Chrome support this — desktop generally doesn't)
+  function canShareFiles() {
+    try {
+      const testFile = new File(['test'], 'test.png', { type: 'image/png' });
+      return !!(navigator.canShare && navigator.canShare({ files: [testFile] }));
+    } catch (e) { return false; }
+  }
+
+  // Update button text based on device capability
+  const shareSupported = canShareFiles();
+  if (shareSupported) {
+    downloadBtn.textContent = '📲 Save to Photos';
+  }
+
+  downloadBtn.addEventListener('click', async () => {
     if (!userImage) return;
-    canvas.toBlob(blob => {
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'power-for-mayor-profile.png';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-      successMsg.classList.add('show');
-      setTimeout(() => successMsg.classList.remove('show'), 8000);
+    canvas.toBlob(async blob => {
+      const filename = 'power-for-mayor-profile.png';
+      const file = new File([blob], filename, { type: 'image/png' });
+
+      if (shareSupported) {
+        // Mobile path: native share sheet → user taps "Save Image" → goes to Photos
+        try {
+          await navigator.share({
+            files: [file],
+            title: 'Power for Mayor — Profile Picture',
+            text: 'Power for Mayor profile picture'
+          });
+          successMsg.textContent = '✓ Saved! Now set it as your profile picture — see Step 3 below.';
+          successMsg.classList.add('show');
+          setTimeout(() => successMsg.classList.remove('show'), 10000);
+        } catch (err) {
+          // User cancelled the share sheet, or share failed — fall back to download
+          if (err.name !== 'AbortError') {
+            downloadBlob(blob, filename);
+          }
+        }
+      } else {
+        // Desktop fallback: standard download
+        downloadBlob(blob, filename);
+      }
     }, 'image/png');
   });
+
+  function downloadBlob(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    successMsg.textContent = '✓ Downloaded! Now upload it as your new profile picture — see Step 3 below.';
+    successMsg.classList.add('show');
+    setTimeout(() => successMsg.classList.remove('show'), 10000);
+  }
 
   resetBtn.addEventListener('click', () => {
     if (!userImage) return;
