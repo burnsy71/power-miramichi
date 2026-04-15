@@ -8,6 +8,7 @@ import About from "@/components/About";
 import Platform from "@/components/Platform";
 import CommunityVideo from "@/components/CommunityVideo";
 import Endorsements from "@/components/Endorsements";
+import ShowYourSupport from "@/components/ShowYourSupport";
 import GetInvolved from "@/components/GetInvolved";
 import Footer from "@/components/Footer";
 import AdminPanel from "@/components/AdminPanel";
@@ -41,6 +42,7 @@ function CampaignSite() {
       <Platform />
       <CommunityVideo />
       <Endorsements />
+      <ShowYourSupport />
       <GetInvolved />
       <Footer />
     </div>

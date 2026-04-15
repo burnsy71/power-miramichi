@@ -78,6 +78,17 @@ const translations = {
       heading: "The People Behind the Campaign",
       subtitle: "Shawn Power is surrounded by friends, family, and neighbours who believe in a better Miramichi. Watch and see the community that drives this movement.",
     },
+    // Show Your Support (profile frame CTA)
+    showYourSupport: {
+      kicker: "Show Your Support",
+      heading: "Wear the badge. Spread the word.",
+      body: "Add the Power for Mayor frame to your Facebook or Instagram profile picture. Every profile is a small billboard — when your friends see it, they'll remember Shawn's name on election day.",
+      bullet1: "Takes less than 30 seconds — right in your browser, no apps required.",
+      bullet2: "Works on your phone or your computer.",
+      bullet3: "Your photo never leaves your device — the whole thing happens privately.",
+      cta: "Get your badge",
+      imageAlt: "Example of the Power for Mayor profile picture frame",
+    },
     // Get Involved
     getInvolved: {
       label: "Get Involved",
@@ -225,6 +236,17 @@ const translations = {
       label: "Notre communaut\u00E9",
       heading: "Le monde derri\u00E8re la campagne",
       subtitle: "Shawn Power est entour\u00E9 d'amis, de famille et de voisins qui croient en un meilleur Miramichi. Regardez et voyez la communaut\u00E9 qui porte ce mouvement.",
+    },
+    // Show Your Support (profile frame CTA)
+    showYourSupport: {
+      kicker: "Montrez votre soutien",
+      heading: "Portez le badge. Passez le mot.",
+      body: "Ajoutez le cadre Power for Mayor \u00E0 votre photo de profil Facebook ou Instagram. Chaque profil, c'est un petit panneau publicitaire \u2014 quand vos amis le voient, ils vont se rappeler du nom de Shawn le jour de l'\u00E9lection.",
+      bullet1: "\u00C7a prend moins de 30 secondes \u2014 directement dans votre navigateur, aucune app \u00E0 installer.",
+      bullet2: "Marche sur votre t\u00E9l\u00E9phone ou sur votre ordinateur.",
+      bullet3: "Votre photo ne quitte jamais votre appareil \u2014 tout se fait en priv\u00E9.",
+      cta: "Obtenez votre badge",
+      imageAlt: "Exemple du cadre de photo de profil Power for Mayor",
     },
     // Get Involved
     getInvolved: {

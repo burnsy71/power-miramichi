@@ -1,0 +1,42 @@
+<!-- Facebook profile frame — 1080x1080 transparent PNG.
+     Transparent center. All branding inside the FB circle-crop zone (r=500 from center). -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 1080 1080" width="1080" height="1080">
+
+  <!-- Gold ring -->
+  <circle cx="540" cy="540" r="530" fill="none" stroke="#E2AA54" stroke-width="22"/>
+  <circle cx="540" cy="540" r="515" fill="none" stroke="#1E392A" stroke-width="3"/>
+  <circle cx="540" cy="540" r="503" fill="none" stroke="#E2AA54" stroke-width="4"/>
+
+  <!-- Arc banner across the bottom -->
+  <path d="
+    M 295.1 790
+    A 350 350 0 0 0 784.9 790
+    L 911 918.4
+    A 530 530 0 0 1 169 918.4
+    Z" fill="#1E392A"/>
+  <!-- Gold top edge of banner -->
+  <path d="M 295.1 790 A 350 350 0 0 0 784.9 790"
+        fill="none" stroke="#E2AA54" stroke-width="5"/>
+
+  <!-- HERO: POWER FOR MAYOR -->
+  <text x="540" y="945" text-anchor="middle"
+        font-family="'Outfit','Inter','Helvetica Neue','Arial',sans-serif"
+        font-size="64" font-weight="800" letter-spacing="3"
+        fill="#FDFCF8">POWER FOR MAYOR</text>
+
+  <!-- URL (gold) -->
+  <text x="540" y="1000" text-anchor="middle"
+        font-family="'Outfit','Inter','Helvetica Neue','Arial',sans-serif"
+        font-size="30" font-weight="600" letter-spacing="3"
+        fill="#E2AA54">PowerForMayor.ca</text>
+
+  <!-- Shield — smaller, pushed into upper-right corner, fully inside FB circle -->
+  <g transform="translate(810, 205)">
+    <path d="M 45 0 L 90 0 L 90 62 Q 90 115 45 132 Q 0 115 0 62 L 0 0 Z"
+          fill="#1E392A" stroke="#E2AA54" stroke-width="3"/>
+    <text x="45" y="82" text-anchor="middle"
+          font-family="'Playfair Display','Georgia','Times New Roman',serif"
+          font-size="76" font-weight="700" fill="#E2AA54">P</text>
+  </g>
+</svg>

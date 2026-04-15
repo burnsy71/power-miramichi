@@ -2,12 +2,6 @@
      Font sizes pushed up for elderly readability. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1275 2775" width="4.25in" height="9.25in">
 
-  <defs>
-    <clipPath id="portraitClip">
-      <circle cx="637" cy="1820" r="180"/>
-    </clipPath>
-  </defs>
-
   <!-- Full-bleed cream background -->
   <rect width="1275" height="2775" fill="#FDFCF8"/>
 
@@ -85,15 +79,11 @@
     </g>
   </g>
 
-  <!-- Portrait: Shawn cut-out (transparent PNG) inside circle frame -->
-  <circle cx="637" cy="1820" r="180" fill="#F3EFE7"/>
-  <image href="shawn-new.png" x="457" y="1657" width="360" height="448"
-         preserveAspectRatio="xMidYMin meet" clip-path="url(#portraitClip)"/>
-  <circle cx="637" cy="1820" r="180" fill="none" stroke="#E2AA54" stroke-width="4"/>
-  <circle cx="637" cy="1820" r="187" fill="none" stroke="#1E392A" stroke-width="1" opacity="0.2"/>
-  <text x="637" y="2050" text-anchor="middle"
-        font-family="'Outfit','Inter',sans-serif" font-size="26" font-weight="600"
-        letter-spacing="10" fill="#CC5A37">MEET SHAWN</text>
+  <!-- Sign photo, full image, displayed as square -->
+  <image href="shawn-sign.jpeg" x="437" y="1700" width="400" height="389"
+         preserveAspectRatio="xMidYMid meet"/>
+  <rect x="437" y="1700" width="400" height="389" fill="none"
+        stroke="#E2AA54" stroke-width="3"/>
 
   <!-- Contact block — bigger type -->
   <g transform="translate(0, 2110)">
